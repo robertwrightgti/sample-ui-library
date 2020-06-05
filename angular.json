@@ -2,5 +2,167 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "sample-ui-library": {
+      "projectType": "library",
+      "root": "projects/sample-ui-library",
+      "sourceRoot": "projects/sample-ui-library/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/sample-ui-library/tsconfig.lib.json",
+            "project": "projects/sample-ui-library/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/sample-ui-library/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sample-ui-library/src/test.ts",
+            "tsConfig": "projects/sample-ui-library/tsconfig.spec.json",
+            "karmaConfig": "projects/sample-ui-library/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sample-ui-library/tsconfig.lib.json",
+              "projects/sample-ui-library/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "sample-ui-test": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/sample-ui-test",
+      "sourceRoot": "projects/sample-ui-test/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sample-ui-test",
+            "index": "projects/sample-ui-test/src/index.html",
+            "main": "projects/sample-ui-test/src/main.ts",
+            "polyfills": "projects/sample-ui-test/src/polyfills.ts",
+            "tsConfig": "projects/sample-ui-test/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/sample-ui-test/src/favicon.ico",
+              "projects/sample-ui-test/src/assets"
+            ],
+            "styles": [
+              "projects/sample-ui-test/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sample-ui-test/src/environments/environment.ts",
+                  "with": "projects/sample-ui-test/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sample-ui-test:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sample-ui-test:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sample-ui-test:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sample-ui-test/src/test.ts",
+            "polyfills": "projects/sample-ui-test/src/polyfills.ts",
+            "tsConfig": "projects/sample-ui-test/tsconfig.spec.json",
+            "karmaConfig": "projects/sample-ui-test/karma.conf.js",
+            "assets": [
+              "projects/sample-ui-test/src/favicon.ico",
+              "projects/sample-ui-test/src/assets"
+            ],
+            "styles": [
+              "projects/sample-ui-test/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sample-ui-test/tsconfig.app.json",
+              "projects/sample-ui-test/tsconfig.spec.json",
+              "projects/sample-ui-test/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sample-ui-test/e2e/protractor.conf.js",
+            "devServerTarget": "sample-ui-test:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sample-ui-test:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "sample-ui-library"
 }
