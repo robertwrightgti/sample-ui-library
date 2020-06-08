@@ -106,7 +106,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample-ui-test:build"
+            "browserTarget": "sample-ui-test:build",
+            "port": 4411
           },
           "configurations": {
             "production": {

@@ -17,13 +17,14 @@
     ],
     "paths": {
       "sample-ui-library": [
-        "dist/sample-ui-library/sample-ui-library",
+        // "dist/sample-ui-library/sample-ui-library",
         "dist/sample-ui-library"
       ]
     }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "strictInjectionParameters": true,
+    "enablyIvy": false
   }
 }

@@ -8,6 +8,6 @@ export class SampleUiLibraryService {
     constructor() { }
 
     sayHi() {
-        return "hi"
+        return "hi I have rebuilt again"
     }
 }

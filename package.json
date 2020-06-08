@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "lib:watch": "ng build sample-ui-library:watch"
   },
   "private": true,
   "dependencies": {
@@ -20,7 +21,6 @@
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
     "rxjs": "~6.5.4",
-    "sample-ui-library": "file:dist/sample-ui-library",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

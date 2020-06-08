@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { SampleUiLibraryService } from 'projects/sample-ui-library/src/public-api';
-// import { SampleUiLibraryComponent } from 'projects/sample-ui-library/src/public-api';
+import { SampleUiLibraryService } from 'sample-ui-library';
+
+
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,11 @@ import { SampleUiLibraryService } from 'projects/sample-ui-library/src/public-ap
 })
 export class AppComponent {
   title = 'sample-ui-test';
+  message = '';
 
   constructor(
-    // sampleUiLibraryComponent: SampleUiLibraryComponent
-    libService: SampleUiLibraryService
+    libService: SampleUiLibraryService,
   ){
-      console.log(libService.sayHi());
+      this.message = libService.sayHi();
   }
 }
